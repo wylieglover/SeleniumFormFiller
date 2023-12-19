@@ -1,7 +1,9 @@
+import os
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
+from webdriver_manager.chrome import ChromeDriverManager
 from faker import Faker
 
 def fill_registration_form(driver, fake):
@@ -32,11 +34,11 @@ def register_user(driver):
     register_button = driver.find_element(By.CLASS_NAME, 'submit')
     register_button.click()
 
+
 def main():
-    chrome_driver_path = 'C:\\ChromeDriver\\chromedriver.exe' 
     url = 'https://vizdataacademy.com/signup/'
     
-    service = Service(chrome_driver_path)
+    service = Service(ChromeDriverManager().install())
     service.start()
 
     driver = webdriver.Chrome(service=service)
